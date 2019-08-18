@@ -1,0 +1,4 @@
+Replicas: 1
+ImagePullPolicy: "IfNotPresent"
+uiService:
+  type: "LoadBalancer"

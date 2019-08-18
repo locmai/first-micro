@@ -1,0 +1,10 @@
+service:
+  ## PosgresSQL service type
+  type: LoadBalancer
+
+persistence:
+  enabled: false
+
+## Local database identity:
+postgresqlUsername: postgres
+postgresqlPassword: postgres
