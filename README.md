@@ -61,6 +61,8 @@ go run main.go
 - [ ] JWT authentication
 - [ ] Common libs
 - [ ] API Gateway
+- [ ] Goal tracking service
+- [ ] Subscription service
 
 #### CI/CD:
 

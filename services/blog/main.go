@@ -29,11 +29,10 @@ func main() {
 	// Initialise service
 	service.Init()
 
-	dbAddr := os.Getenv("POSTGRES_HOST") + ":" + os.Getenv("POSTGRES_PORT")
 	db := pg.Connect(&pg.Options{
 		User:     os.Getenv("POSTGRES_USER"),
 		Password: os.Getenv("POSTGRES_PASS"),
-		Addr:     dbAddr,
+		Addr:     os.Getenv("POSTGRES_HOST") + ":" + os.Getenv("POSTGRES_PORT"),
 		Database: os.Getenv("POSTGRES_DB"),
 	})
 
