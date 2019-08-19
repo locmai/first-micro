@@ -7,11 +7,12 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/locmai/first-micro/services/blog/handler"
 	"github.com/locmai/first-micro/services/blog/model"
+	blog "github.com/locmai/first-micro/services/blog/proto/blog"
 	"github.com/locmai/first-micro/services/blog/subscriber"
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/util/log"
-
-	blog "github.com/locmai/first-micro/services/blog/proto/blog"
+	"github.com/micro/go-plugins/registry/nats"
+	natscore "github.com/nats-io/nats.go"
 )
 
 func main() {
@@ -20,20 +21,30 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
+
 	// New Service
+	natsOptionsLocal := natscore.Options{
+		Url: os.Getenv("NATS_HOST")+":"+os.Getenv("NAT_PORT"),
+		MaxReconnect: 10,
+		AllowReconnect: true,
+		User: os.Getenv("NATS_USER"),
+		Password: os.Getenv("NATS_PASS"),
+	}
+
 	service := micro.NewService(
 		micro.Name("go.micro.srv.blog"),
 		micro.Version("latest"),
+		micro.Registry(nats.NewRegistry(nats.Options(natsOptionsLocal))),
 	)
+	log.Info("Connected to NATS registry!")
 
 	// Initialise service
 	service.Init()
 
-	dbAddr := os.Getenv("POSTGRES_HOST") + ":" + os.Getenv("POSTGRES_PORT")
 	db := pg.Connect(&pg.Options{
 		User:     os.Getenv("POSTGRES_USER"),
 		Password: os.Getenv("POSTGRES_PASS"),
-		Addr:     dbAddr,
+		Addr:     os.Getenv("POSTGRES_HOST") + ":" + os.Getenv("POSTGRES_PORT"),
 		Database: os.Getenv("POSTGRES_DB"),
 	})
 

@@ -2,6 +2,10 @@
 
 A demonstration using Go Micro framework
 
+### Description
+
+TBD
+
 ### Prerequisites
 
 Required packages and tools
@@ -48,3 +52,20 @@ or
 make proto
 go run main.go
 ```
+
+### To-do list
+
+#### Features:
+
+- [ ] Blog service
+- [ ] JWT authentication
+- [ ] Common libs
+- [ ] API Gateway
+- [ ] Goal tracking service
+- [ ] Subscription service
+
+#### CI/CD:
+
+- [ ] Build pipeline
+- [ ] Deploy pipeline
+- [ ] App configuration script
