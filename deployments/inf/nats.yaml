@@ -1,0 +1,13 @@
+# Default https://github.com/helm/charts/blob/master/stable/nats/values.yaml
+replicaCount: 1
+auth:
+  user: nats_client
+  password: nats_client
+
+client:
+  service:
+    type: LoadBalancer
+
+monitoring:
+  service:
+    type: LoadBalancer
