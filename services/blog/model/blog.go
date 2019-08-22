@@ -6,14 +6,23 @@ import (
 
 	"github.com/go-pg/pg"
 	"github.com/go-pg/pg/orm"
+	user "github.com/locmai/first-micro/services/user/model"
 )
 
 // Story - Model of the Story on the blog
 type Story struct {
 	ID          int64
-	Title       string    `sql:",unique,notnull"`
+	Title       string     `sql:",unique,notnull"`
+	Content     string     `sql:",notnull"`
+	Author      *user.User `sql:",notnull"`
+	CreatedDate time.Time  `sql:",notnull"`
+}
+
+type Comment struct {
+	ID          int64
+	Nickname    string    `sql:",notnull"`
+	Story       *Story    `sql:",notnull"`
 	Content     string    `sql:",notnull"`
-	Author      string    `sql:",notnull"`
 	CreatedDate time.Time `sql:",notnull"`
 }
 

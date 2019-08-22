@@ -8,3 +8,7 @@ consul:
 db:
 	$(MAKE) config-local
 	helm install stable/postgresql -f postgresql.yaml --name postgresql --wait
+
+nats:
+	$(MAKE) config-local
+	helm install stable/nats -f nats.yaml --name nats --wait

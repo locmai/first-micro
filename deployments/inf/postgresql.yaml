@@ -1,6 +1,9 @@
+# Default https://github.com/helm/charts/blob/master/stable/postgresql/values.yaml
 service:
   ## PosgresSQL service type
   type: LoadBalancer
+
+
 
 persistence:
   enabled: false

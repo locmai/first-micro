@@ -1,3 +1,4 @@
+# Default https://github.com/helm/charts/blob/master/stable/consul/values.yaml
 Replicas: 1
 ImagePullPolicy: "IfNotPresent"
 uiService:
